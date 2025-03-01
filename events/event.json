@@ -1,0 +1,15 @@
+{
+  "resource": "/officers",
+  "path": "/officers",
+  "httpMethod": "GET",
+  "queryStringParameters": {
+    "OfficerID": "OFC12345"
+  },
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "requestContext": {
+    "httpMethod": "GET",
+    "path": "/officers"
+  }
+}
