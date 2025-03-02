@@ -11,27 +11,43 @@ BUCKET_NAME = 'officers-profile-photos'
 
 def lambda_handler(event, context):
     try:
-        officer_id = event['queryStringParameters']['OfficerID']
-
         table = dynamodb.Table(TABLE_NAME)
-        response = table.get_item(Key={'OfficerID': officer_id})
 
-        if 'Item' not in response:
+        # Check if OfficerID is provided
+        if event.get('queryStringParameters') and 'OfficerID' in event['queryStringParameters']:
+            officer_id = event['queryStringParameters']['OfficerID']
+            response = table.get_item(Key={'OfficerID': officer_id})
+
+            if 'Item' not in response:
+                return {
+                    'statusCode': 404,
+                    'body': json.dumps({'message': 'Officer not found'})
+                }
+
+            officer = response['Item']
+            photo_key = f"{officer_id}.jpg"
+            photo_url = f"https://{BUCKET_NAME}.s3.amazonaws.com/{photo_key}"
+            officer['PhotoS3URL'] = photo_url
+
             return {
-                'statusCode': 404,
-                'body': json.dumps({'message': 'Officer not found'})
+                'statusCode': 200,
+                'body': json.dumps(officer)
             }
 
-        officer = response['Item']
+        # If no OfficerID, return all officers
+        response = table.scan()
+        officers = response.get('Items', [])
 
-        photo_key = f"{officer_id}.jpg"
-        photo_url = f"https://{BUCKET_NAME}.s3.amazonaws.com/{photo_key}"
-
-        officer['PhotoS3URL'] = photo_url
+        # Add photo URLs for each officer
+        for officer in officers:
+            officer_id = officer['OfficerID']
+            photo_key = f"{officer_id}.jpg"
+            photo_url = f"https://{BUCKET_NAME}.s3.amazonaws.com/{photo_key}"
+            officer['PhotoS3URL'] = photo_url
 
         return {
             'statusCode': 200,
-            'body': json.dumps(officer)
+            'body': json.dumps(officers)
         }
 
     except ClientError as e:
