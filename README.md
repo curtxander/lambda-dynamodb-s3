@@ -1,146 +1,131 @@
 # lambda-dynamodb-s3
 
-lambda-dynamodb-s3 Project
-
 This project is a serverless application using AWS SAM (Serverless Application Model), AWS Lambda, DynamoDB, and S3. It exposes a REST API to fetch officer details stored in a DynamoDB table and their profile photos stored in an S3 bucket.
 
-Project Structure
+**Project Structure**
 
-lambda-dynamodb-s3/
-|-- lambda_function.py         # Lambda function code
-|-- template.yaml              # AWS SAM template for infrastructure
-|-- README.md                  # Project documentation
+  lambda-dynamodb-s3/
+  |-- lambda_function.py         # Lambda function code
+  |-- template.yaml              # AWS SAM template for infrastructure
+  |-- README.md                  # Project documentation
 
-AWS Resources
+**AWS Resources**
 
-DynamoDB Table: Officers
+  DynamoDB Table: Officers
+  
+  S3 Bucket: officers-profile-photos
+  
+  Lambda Function: FetchOfficerDetailsFunction
+  
+  API Gateway Endpoint: /officers
 
-S3 Bucket: officers-profile-photos
+**Prerequisites**
 
-Lambda Function: FetchOfficerDetailsFunction
+  AWS CLI configured
+  
+  AWS SAM CLI installed
+  
+  Python 3.8 or later
 
-API Gateway Endpoint: /officers
+**Setup**
 
-Prerequisites
+  1.Clone the repository:
 
-AWS CLI configured
+    git clone [https://github.com/your-repo/lambda-dynamodb-s3.git](https://github.com/curtxander/lambda-dynamodb-s3.git)
+    cd lambda-dynamodb-s3
 
-AWS SAM CLI installed
+  2. Build the project:
+  
+    sam build
+  
+  3. Deploy the project:
+  
+    sam deploy --guided
 
-Python 3.8 or later
+**API Endpoints**
 
-Setup
+**  1. Get Officer by ID**
+  
+    **Request:**
+    
+      curl "http://127.0.0.1:3000/officers?OfficerID=OFC12345"
+  
+**    Response:**
+  
+    {
+      "OfficerID": "OFC12345",
+      "Name": "Curt Xander Bergano",
+      "Position": "Backend Developer",
+      "Description": "He is one of the backend developers of this website.",
+      "LinkedInURL": "https://www.linkedin.com/in/curt-xander-bergano-5a7a08205/",
+      "PhotoS3URL": "https://s3.amazonaws.com/officers-profile-photos/OFC12345.jpg"
+    }
 
-Clone the repository:
+  **Get All Officers**
+  
+    **Request:**
+    
+      curl "http://127.0.0.1:3000/officers"
+    
+**  Response:**
 
-git clone https://github.com/your-repo/lambda-dynamodb-s3.git
-cd lambda-dynamodb-s3
+    [
+      {
+        "OfficerID": "OFC12345",
+        "Name": "John Doe",
+        "Position": "Department Head",
+        "Description": "Experienced leader in academic affairs.",
+        "LinkedInURL": "https://linkedin.com/in/johndoe",
+        "PhotoS3URL": "https://s3.amazonaws.com/officers-profile-photos/OFC12345.jpg"
+      },
+      {
+        "OfficerID": "OFC67890",
+        "Name": "Jane Smith",
+        "Position": "Project Manager",
+        "Description": "Expert in project delivery.",
+        "LinkedInURL": "https://linkedin.com/in/janesmith",
+        "PhotoS3URL": "https://s3.amazonaws.com/officers-profile-photos/OFC67890.jpg"
+      }
+    ]
 
-Build the project:
+**DynamoDB Table Structure**
 
-sam build
+_  Attribute    Type
+  _
+  OfficerID    String
+  
+  Name         String
+  
+  Position     String
+  
+  Description  String
+  
+  LinkedInURL  String
+  
+  PhotoS3URL   String
 
-Deploy the project:
+**S3 Bucket Structure**
 
-sam deploy --guided
+  officers-profile-photos/
+    |-- OFC12345.jpg
+    |-- OFC67890.jpg
 
-API Endpoints
+**Local Development**
 
-Get Officer by ID
+  1.Start the API locally:
+  
+    sam local start-api
 
-Request:
+  2. Test the API:
 
-curl "http://127.0.0.1:3000/officers?OfficerID=OFC12345"
+    curl "http://127.0.0.1:3000/officers?OfficerID=OFC12345"
 
-Response:
+**Troubleshooting
+**
+  Internal Server Error: Ensure the IAM role attached to the Lambda function has permissions for DynamoDB and S3.
 
-{
-  "OfficerID": "OFC12345",
-  "Name": "John Doe",
-  "Position": "Department Head",
-  "Description": "Experienced leader in academic affairs.",
-  "LinkedInURL": "https://linkedin.com/in/johndoe",
-  "PhotoS3URL": "https://s3.amazonaws.com/officers-profile-photos/OFC12345.jpg"
-}
+  Empty Response: Ensure the OfficerID exists in the DynamoDB table.
 
-Get All Officers
+  Photo Not Found: Ensure the photo exists in the S3 bucket with the correct name.
 
-Request:
-
-curl "http://127.0.0.1:3000/officers"
-
-Response:
-
-[
-  {
-    "OfficerID": "OFC12345",
-    "Name": "John Doe",
-    "Position": "Department Head",
-    "Description": "Experienced leader in academic affairs.",
-    "LinkedInURL": "https://linkedin.com/in/johndoe",
-    "PhotoS3URL": "https://s3.amazonaws.com/officers-profile-photos/OFC12345.jpg"
-  },
-  {
-    "OfficerID": "OFC67890",
-    "Name": "Jane Smith",
-    "Position": "Project Manager",
-    "Description": "Expert in project delivery.",
-    "LinkedInURL": "https://linkedin.com/in/janesmith",
-    "PhotoS3URL": "https://s3.amazonaws.com/officers-profile-photos/OFC67890.jpg"
-  }
-]
-
-DynamoDB Table Structure
-
-Attribute
-
-Type
-
-OfficerID
-
-String
-
-Name
-
-String
-
-Position
-
-String
-
-Description
-
-String
-
-LinkedInURL
-
-String
-
-S3 Bucket Structure
-
-officers-profile-photos/
-|-- OFC12345.jpg
-|-- OFC67890.jpg
-
-Local Development
-
-Start the API locally:
-
-sam local start-api
-
-Test the API:
-
-curl "http://127.0.0.1:3000/officers?OfficerID=OFC12345"
-
-Troubleshooting
-
-Internal Server Error: Ensure the IAM role attached to the Lambda function has permissions for DynamoDB and S3.
-
-Empty Response: Ensure the OfficerID exists in the DynamoDB table.
-
-Photo Not Found: Ensure the photo exists in the S3 bucket with the correct name.
-
-Conclusion
-
-This project demonstrates a simple serverless architecture integrating AWS Lambda, DynamoDB, and S3 for managing officer data and their profile photos. Feel free to extend and improve it!
 
