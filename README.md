@@ -44,72 +44,72 @@ This project is a serverless application using AWS SAM (Serverless Application M
 
 **API Endpoints**
 
-**  1. Get Officer by ID**
+    **1. Get Officer by ID**
   
-    **Request:**
+        **Request:**
     
-    
-      curl "http://127.0.0.1:3000/officers?OfficerID=OFC12345"
+              curl "http://127.0.0.1:3000/officers?OfficerID=OFC12345"
   
-**    Response:**
+          **Response:**
   
-    {
-      "OfficerID": "OFC12345",
-      "Name": "Curt Xander Bergano",
-      "Position": "Backend Developer",
-      "Description": "He is one of the backend developers of this website.",
-      "LinkedInURL": "https://www.linkedin.com/in/curt-xander-bergano-5a7a08205/",
-      "PhotoS3URL": "https://s3.amazonaws.com/officers-profile-photos/OFC12345.jpg"
-    }
+                {
+                  "OfficerID": "OFC12345",
+                  "Name": "Curt Xander Bergano",
+                  "Position": "Backend Developer",
+                  "Description": "He is one of the backend developers of this website.",
+                  "LinkedInURL": "https://www.linkedin.com/in/curt-xander-bergano-5a7a08205/",
+                  "PhotoS3URL": "https://s3.amazonaws.com/officers-profile-photos/OFC12345.jpg"
+                }
 
   **Get All Officers**
   
     **Request:**
     
+          curl "http://127.0.0.1:3000/officers"
     
-      curl "http://127.0.0.1:3000/officers"
-    
-**  Response:**
+    **Response:**
 
-    [
-      {
-        "OfficerID": "OFC12345",
-        "Name": "John Doe",
-        "Position": "Department Head",
-        "Description": "Experienced leader in academic affairs.",
-        "LinkedInURL": "https://linkedin.com/in/johndoe",
-        "PhotoS3URL": "https://s3.amazonaws.com/officers-profile-photos/OFC12345.jpg"
-      },
-      {
-        "OfficerID": "OFC67890",
-        "Name": "Jane Smith",
-        "Position": "Project Manager",
-        "Description": "Expert in project delivery.",
-        "LinkedInURL": "https://linkedin.com/in/janesmith",
-        "PhotoS3URL": "https://s3.amazonaws.com/officers-profile-photos/OFC67890.jpg"
-      }
-    ]
+        [
+          {
+            "OfficerID": "OFC12345",
+            "Name": "John Doe",
+            "Position": "Department Head",
+            "Description": "Experienced leader in academic affairs.",
+            "LinkedInURL": "https://linkedin.com/in/johndoe",
+            "PhotoS3URL": "https://s3.amazonaws.com/officers-profile-photos/OFC12345.jpg"
+          },
+          {
+            "OfficerID": "OFC67890",
+            "Name": "Jane Smith",
+            "Position": "Project Manager",
+            "Description": "Expert in project delivery.",
+            "LinkedInURL": "https://linkedin.com/in/janesmith",
+            "PhotoS3URL": "https://s3.amazonaws.com/officers-profile-photos/OFC67890.jpg"
+          }
+        ]
 
 **DynamoDB Table Structure**
 
-_  Attribute    Type
-  _
-  OfficerID    String
+    **Attribute **   **Type**
   
-  Name         String
-  
-  Position     String
-  
-  Description  String
-  
-  LinkedInURL  String
-  
-  PhotoS3URL   String
+      OfficerID        String
+      
+      Name             String
+      
+      Position         String
+      
+      Description      String
+      
+      LinkedInURL      String
+      
+      PhotoS3URL       String
 
 **S3 Bucket Structure**
 
   officers-profile-photos/
+  
     |-- OFC12345.jpg
+    
     |-- OFC67890.jpg
 
 **Local Development**
@@ -122,8 +122,8 @@ _  Attribute    Type
 
     curl "http://127.0.0.1:3000/officers?OfficerID=OFC12345"
 
-**Troubleshooting
-**
+**Troubleshooting**
+
   Internal Server Error: Ensure the IAM role attached to the Lambda function has permissions for DynamoDB and S3.
 
   Empty Response: Ensure the OfficerID exists in the DynamoDB table.
