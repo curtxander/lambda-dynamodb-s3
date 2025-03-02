@@ -4,28 +4,28 @@ This project is a serverless application using AWS SAM (Serverless Application M
 
 **Project Structure**
 
-  lambda-dynamodb-s3/
-  |-- lambda_function.py         # Lambda function code
-  |-- template.yaml              # AWS SAM template for infrastructure
-  |-- README.md                  # Project documentation
+    lambda-dynamodb-s3/
+    |-- lambda_function.py         # Lambda function code
+    |-- template.yaml              # AWS SAM template for infrastructure
+    |-- README.md                  # Project documentation
 
 **AWS Resources**
 
-  DynamoDB Table: Officers
-  
-  S3 Bucket: officers-profile-photos
-  
-  Lambda Function: FetchOfficerDetailsFunction
-  
-  API Gateway Endpoint: /officers
+    DynamoDB Table: Officers
+    
+    S3 Bucket: officers-profile-photos
+    
+    Lambda Function: FetchOfficerDetailsFunction
+    
+    API Gateway Endpoint: /officers
 
 **Prerequisites**
 
-  AWS CLI configured
-  
-  AWS SAM CLI installed
-  
-  Python 3.8 or later
+    AWS CLI configured
+    
+    AWS SAM CLI installed
+    
+    Python 3.8 or later
 
 **Setup**
 
@@ -48,6 +48,7 @@ This project is a serverless application using AWS SAM (Serverless Application M
   
     **Request:**
     
+    
       curl "http://127.0.0.1:3000/officers?OfficerID=OFC12345"
   
 **    Response:**
@@ -64,6 +65,7 @@ This project is a serverless application using AWS SAM (Serverless Application M
   **Get All Officers**
   
     **Request:**
+    
     
       curl "http://127.0.0.1:3000/officers"
     
