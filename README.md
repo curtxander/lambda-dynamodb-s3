@@ -44,53 +44,53 @@ This project is a serverless application using AWS SAM (Serverless Application M
 
 **API Endpoints**
 
-    **1. Get Officer by ID**
+**1. Get Officer by ID**
   
-        **Request:**
+**Request:**
     
-              curl "http://127.0.0.1:3000/officers?OfficerID=OFC12345"
+    curl "http://127.0.0.1:3000/officers?OfficerID=OFC12345"
   
-          **Response:**
+**Response:**
   
-                {
-                  "OfficerID": "OFC12345",
-                  "Name": "Curt Xander Bergano",
-                  "Position": "Backend Developer",
-                  "Description": "He is one of the backend developers of this website.",
-                  "LinkedInURL": "https://www.linkedin.com/in/curt-xander-bergano-5a7a08205/",
-                  "PhotoS3URL": "https://s3.amazonaws.com/officers-profile-photos/OFC12345.jpg"
-                }
+    {
+      "OfficerID": "OFC12345",
+      "Name": "Curt Xander Bergano",
+      "Position": "Backend Developer",
+      "Description": "He is one of the backend developers of this website.",
+      "LinkedInURL": "https://www.linkedin.com/in/curt-xander-bergano-5a7a08205/",
+      "PhotoS3URL": "https://s3.amazonaws.com/officers-profile-photos/OFC12345.jpg"
+    }
 
-  **Get All Officers**
+**Get All Officers**
   
-    **Request:**
+**Request:**
     
-          curl "http://127.0.0.1:3000/officers"
+    curl "http://127.0.0.1:3000/officers"
     
-    **Response:**
+**Response:**
 
-        [
-          {
-            "OfficerID": "OFC12345",
-            "Name": "John Doe",
-            "Position": "Department Head",
-            "Description": "Experienced leader in academic affairs.",
-            "LinkedInURL": "https://linkedin.com/in/johndoe",
-            "PhotoS3URL": "https://s3.amazonaws.com/officers-profile-photos/OFC12345.jpg"
-          },
-          {
-            "OfficerID": "OFC67890",
-            "Name": "Jane Smith",
-            "Position": "Project Manager",
-            "Description": "Expert in project delivery.",
-            "LinkedInURL": "https://linkedin.com/in/janesmith",
-            "PhotoS3URL": "https://s3.amazonaws.com/officers-profile-photos/OFC67890.jpg"
-          }
-        ]
+    [
+      {
+        "OfficerID": "OFC12345",
+        "Name": "John Doe",
+        "Position": "Department Head",
+        "Description": "Experienced leader in academic affairs.",
+        "LinkedInURL": "https://linkedin.com/in/johndoe",
+        "PhotoS3URL": "https://s3.amazonaws.com/officers-profile-photos/OFC12345.jpg"
+      },
+      {
+        "OfficerID": "OFC67890",
+        "Name": "Jane Smith",
+        "Position": "Project Manager",
+        "Description": "Expert in project delivery.",
+        "LinkedInURL": "https://linkedin.com/in/janesmith",
+        "PhotoS3URL": "https://s3.amazonaws.com/officers-profile-photos/OFC67890.jpg"
+      }
+    ]
 
 **DynamoDB Table Structure**
 
-    **Attribute **   **Type**
+    Attribute       Type
   
       OfficerID        String
       
