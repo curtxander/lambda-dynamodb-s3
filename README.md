@@ -31,7 +31,7 @@ This project is a serverless application using AWS SAM (Serverless Application M
 
   1.Clone the repository:
 
-    git clone [https://github.com/your-repo/lambda-dynamodb-s3.git](https://github.com/curtxander/lambda-dynamodb-s3.git)
+    git clone https://github.com/curtxander/lambda-dynamodb-s3.git
     cd lambda-dynamodb-s3
 
   2. Build the project:
