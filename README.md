@@ -29,7 +29,7 @@ This project is a serverless application using AWS SAM (Serverless Application M
 
 **Setup**
 
-  1.Clone the repository:
+  1. Clone the repository:
 
     git clone https://github.com/curtxander/lambda-dynamodb-s3.git
     cd lambda-dynamodb-s3
@@ -114,7 +114,7 @@ _  Attribute    Type
 
 **Local Development**
 
-  1.Start the API locally:
+  1. Start the API locally:
   
     sam local start-api
 
